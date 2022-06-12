@@ -11,3 +11,6 @@
 ### install dependencies
 
 `npm i express`
+
+### Dev dependenices
+`npm i -D nodemon concurrently`
