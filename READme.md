@@ -14,3 +14,6 @@
 
 ### Dev dependenices
 `npm i -D nodemon concurrently`
+
+### dotenv 
+`npm i dotenv`
