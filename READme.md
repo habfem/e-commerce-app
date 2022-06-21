@@ -10,7 +10,7 @@
 
 ### install dependencies
 
-`npm i express`
+`npm i express mongoose`
 
 ### Dev dependenices
 `npm i -D nodemon concurrently`
