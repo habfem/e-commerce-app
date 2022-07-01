@@ -1,14 +1,13 @@
-//import mongoose from "mongoose";
-import dotenv from "dotenv";
-import users from "./data/users.js";
-import products from "./data/products.js";
-import User from "./models/userModel.js";
-import Product from "./models/productModel.js";
-import Order from "./models/orderModel.js";
-import connectDB from "./config/db.js";
+import mongoose from 'mongoose'
+import dotenv from 'dotenv';
+import users from './data/users.js'
+import products from './data/products.js'
+import User from './models/userModel.js'
+import Product from './models/productModel.js'
+import Order from './models/orderModel.js'
+import connectDB from './config/db.js'
 
-
-dotenv.config({ path: './config/db.js' })
+dotenv.config()
 
 await connectDB()
 
@@ -22,7 +21,7 @@ const importData = async () => {
 
     const adminUser = createdUsers[0]._id
 
-    const sampleProducts = products.map(product => {
+    const sampleProducts = products.map((product) => {
       return { ...product, user: adminUser }
     })
 
@@ -31,8 +30,8 @@ const importData = async () => {
     console.log('Data Imported!')
     process.exit()
   } catch (error) {
-    console.error(`${error}`);
-    process.exit(1);
+    console.error(`${error}`)
+    process.exit(1)
   }
 }
 
@@ -45,7 +44,7 @@ const destroyData = async () => {
     console.log('Data Destroyed!')
     process.exit()
   } catch (error) {
-    console.error(`${error}`);
+    console.error(`${error}`)
     process.exit(1)
   }
 }
