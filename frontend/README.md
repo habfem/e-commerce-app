@@ -30,5 +30,6 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm i axios`
+### `npm i redux react-redux redux-thunk redux-devtools-extension`
 
 http library to make http request

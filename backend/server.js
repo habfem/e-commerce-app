@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-app.use('/api/products', productRoutes)
+app.use('/api/products', productRoutes);
 
 // Error Handling
 
