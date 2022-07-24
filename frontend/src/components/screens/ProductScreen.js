@@ -9,7 +9,7 @@ import Message from '../Message';
 
 const ProductScreen = () => {
   //const [product, setProduct] = useState({})
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ const ProductScreen = () => {
   const navigate = useNavigate()
 
   const addToCartHandler = () => {
-    navigate(`/cart/${id}?=${qty}`)
+    navigate(`/cart/${id}?qty=${qty}`)
   }
 
   //const product = products.find((p) => p._id === (id))
