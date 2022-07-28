@@ -22,7 +22,6 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 
 // Error Handling
-
 app.use(notFound)
 app.use(errorHandler)
 
