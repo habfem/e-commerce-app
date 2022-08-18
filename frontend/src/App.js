@@ -8,6 +8,8 @@ import CartScreen from './components/screens/CartScreen';
 import LoginScreen from './components/screens/LoginScreen';
 import RegisterScreen from './components/screens/RgisterScreen';
 import ProfileScreen from './components/screens/ProfileScreen'
+import ShippingScreen from './components/screens/ShippingScreen'
+
 
 
 const App = () => {
@@ -17,6 +19,7 @@ const App = () => {
       <main className='py-5'>
         <Container>
           <Routes>
+            <Route path='/shipping' element={<ShippingScreen />} />
             <Route path='/login' element={<LoginScreen />} />
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='/profile' element={<ProfileScreen />} />

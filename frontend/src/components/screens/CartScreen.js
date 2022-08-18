@@ -13,11 +13,14 @@ const CartScreen = () => {
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const userLogin = useSelector((state) => state.userLogin)
 
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart
   //console.log(cartItems)
+
+  const { userInfo } = userLogin
 
   useEffect(() => {
     if (productId) {
@@ -30,9 +33,13 @@ const CartScreen = () => {
   }
 
   const checkoutHandler = () => {
-    navigate('/login?redirect=shipping')
-  }
+    if (!userInfo) {
+      navigate('/login')
+    } else {
+      navigate('/shipping')
+    }
 
+  }
   return (
     <Row>
       <Col md={8}>
