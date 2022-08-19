@@ -19,7 +19,7 @@ const PaymentScreen = () => {
     Navigate('/shipping')
   }
 
-  const [paymentMethod, setPaymentMethod] = useState('PayPal')
+  const [paymentMethod, setPaymentMethod] = useState('PayPal or Card Payment')
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -35,10 +35,12 @@ const PaymentScreen = () => {
         <Form.Group>
           <Form.Label as='legend'>Select Method</Form.Label>
           <br></br>
+          <br></br>
           <Col>
-            <Form.Check type='radio' label='PayPal or Card Payment' id='PayPal' name='paymentMethod' value='Paypal' checked onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
+            <Form.Check type='radio' label='PayPal or Card Payment' id='Paypal' name='paymentMethod' value='Paypal' checked onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
             <br></br>
-            <Form.Check type='radio' label='E-naira' id='Stripe' name='paymentMethod' disabled value='E-naira' onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
+            <Form.Check type='radio' label='E-naira' id='E-naira' name='paymentMethod' disabled value='E-naira' onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
+            <br></br>
           </Col>
         </Form.Group>
         <div className="d-grid gap-2">
