@@ -66,7 +66,7 @@ const PlaceOrderScreen = () => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ₦{item.price} = ₦{item.qty * item.price}
+                          {item.qty} x ₦{numberWithCommas(item.price)} = ₦{numberWithCommas(item.qty * item.price)}
                         </Col>
                       </Row>
                     </ListGroup.Item>
