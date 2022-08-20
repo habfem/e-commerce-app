@@ -4,6 +4,11 @@ import { Card } from 'react-bootstrap';
 import Rating from './Rating';
 
 const Product = ({ product }) => {
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <Card className='my-3 p-3 rounded'>
       <Link to={`/product/${product._id}`}>
@@ -19,7 +24,7 @@ const Product = ({ product }) => {
           <Rating value={product.rating} text={`${product.numReviews} reviews`} />
         </Card.Text>
 
-        <Card.Text className='text-center' as='h3'>₦{product.price}</Card.Text>
+        <Card.Text className='text-center' as='h3'>₦{numberWithCommas(product.price)}</Card.Text>
 
       </Card.Body>
     </Card>

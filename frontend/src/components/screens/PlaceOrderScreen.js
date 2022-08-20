@@ -11,6 +11,10 @@ const PlaceOrderScreen = () => {
 
   // Calculate price
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2)
   }
@@ -83,28 +87,28 @@ const PlaceOrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>₦{cart.itemsPrice}</Col>
+                  <Col>₦{numberWithCommas(cart.itemsPrice)}</Col>
                 </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>₦{cart.shippingPrice}</Col>
+                  <Col>₦{numberWithCommas(cart.shippingPrice)}</Col>
                 </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>₦{cart.taxPrice}</Col>
+                  <Col>₦{numberWithCommas(cart.taxPrice)}</Col>
                 </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>₦{cart.totalPrice}</Col>
+                  <Col>₦{numberWithCommas(cart.totalPrice)}</Col>
                 </Row>
               </ListGroup.Item>
 
