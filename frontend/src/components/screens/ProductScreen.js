@@ -9,6 +9,10 @@ import Message from '../Message';
 
 const ProductScreen = () => {
   //const [product, setProduct] = useState({})
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const [qty, setQty] = useState(1)
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -58,7 +62,7 @@ const ProductScreen = () => {
                   <Row>
                     <Col>Price:</Col>
                     <Col>
-                      <strong>{product.price}</strong>
+                      <strong>{numberWithCommas(product.price)}</strong>
                     </Col>
                   </Row>
                 </ListGroupItem>
