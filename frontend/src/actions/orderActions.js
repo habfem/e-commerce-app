@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
@@ -21,19 +22,20 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.put(`/api/users/orders`, order, config)
+    const { data } = await axios.post(`/api/orders`, order, config)
 
     dispatch({
       type: ORDER_CREATE_SUCCESS,
       payload: data,
     })
-
   } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
     dispatch({
       type: ORDER_CREATE_FAIL,
-      payload: error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message,
+      payload: message,
     })
   }
-} 
+}
