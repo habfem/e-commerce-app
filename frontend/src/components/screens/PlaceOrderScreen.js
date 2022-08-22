@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 //import Loader from '../Loader';
 import Message from '../Message';
 import CheckoutSteps from '../CheckoutSteps'
+import { createOrder } from '../../actions/orderActions'
 
 const PlaceOrderScreen = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const cart = useSelector(state => state.cart)
 
   // Calculate price
@@ -26,8 +30,26 @@ const PlaceOrderScreen = () => {
 
   cart.totalPrice = addDecimals((Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2))
 
+  const orderCreate = useSelector(state => state.orderCreate)
+  const { order, success, error } = orderCreate
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`)
+    }
+    // eslint-disable-next-line
+  }, [navigate, success])
+
   const placeOrderHandler = () => {
-    console.log('order')
+    dispatch(createOrder({
+      orderItems: cart.cartItems,
+      shippingAddress: cart.shippingAddress,
+      paymentMethod: cart.paymentMethod,
+      itemsPrice: cart.itemsPrice,
+      shippingPrice: cart.shippingPrice,
+      taxPrice: cart.taxPrice,
+      totalPrice: cart.totalPrice,
+    }))
   }
 
   return (
@@ -110,6 +132,10 @@ const PlaceOrderScreen = () => {
                   <Col>Total</Col>
                   <Col>₦{numberWithCommas(cart.totalPrice)}</Col>
                 </Row>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                {error && <Message variant='dnager'>{error}</Message>}
               </ListGroup.Item>
 
               <ListGroup.Item>
