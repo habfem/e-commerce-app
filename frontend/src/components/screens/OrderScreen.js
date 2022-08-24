@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate, Link, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 //import Loader from '../Loader';
@@ -47,6 +47,7 @@ const OrderScreen = () => {
         <ListGroup variant='flush'>
           <ListGroup.Item>
             <h2>Shipping</h2>
+
             <p> <strong>Name: </strong> {order.user.name}
             </p>
             <p> <strong>Email: </strong> <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
