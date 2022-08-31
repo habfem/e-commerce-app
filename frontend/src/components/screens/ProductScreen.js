@@ -13,6 +13,10 @@ const ProductScreen = () => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2)
+  }
+
   const [qty, setQty] = useState(1)
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -62,7 +66,7 @@ const ProductScreen = () => {
                   <Row>
                     <Col>Price:</Col>
                     <Col>
-                      <strong>{numberWithCommas(product.price)}</strong>
+                      <strong>{numberWithCommas(addDecimals(product.price))}</strong>
                     </Col>
                   </Row>
                 </ListGroupItem>

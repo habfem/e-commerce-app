@@ -9,6 +9,10 @@ const Product = ({ product }) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2)
+  }
+
   return (
     <Card className='my-3 p-3 rounded'>
       <Link to={`/product/${product._id}`}>
@@ -24,7 +28,7 @@ const Product = ({ product }) => {
           <Rating value={product.rating} text={`${product.numReviews} reviews`} />
         </Card.Text>
 
-        <Card.Text className='text-center' as='h3'>₦{numberWithCommas(product.price)}</Card.Text>
+        <Card.Text className='text-center' as='h3'>₦{numberWithCommas(addDecimals(product.price))}</Card.Text>
 
       </Card.Body>
     </Card>
