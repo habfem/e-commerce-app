@@ -32,7 +32,7 @@ app.get('/api/config/paypal', (req, res) =>
 )
 
 // Make upload folder static
-const __dirname = path.resolve() // only works with ES6 syntax
+const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 // Error Handling
