@@ -19,8 +19,8 @@ const ProductScreen = () => {
   }
 
   const [qty, setQty] = useState(1)
-  const [rating, setRating] = useState(1)
-  const [comment, setComment] = useState(1)
+  const [rating, setRating] = useState(0)
+  const [comment, setComment] = useState('')
 
   const { id } = useParams();
   const dispatch = useDispatch();
