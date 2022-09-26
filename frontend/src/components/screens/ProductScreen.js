@@ -9,7 +9,7 @@ import Message from '../Message';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../../constants/productConstants'
 
 const ProductScreen = () => {
-  //const [product, setProduct] = useState({})
+
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
