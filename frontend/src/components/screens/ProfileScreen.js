@@ -7,6 +7,7 @@ import Message from '../Message';
 import Loader from '../Loader';
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
 import { ListMyOrders } from '../../actions/orderActions'
+import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 
 const ProfileScreen = () => {
 
@@ -43,7 +44,8 @@ const ProfileScreen = () => {
     if (!userInfo) {
       navigate('/login')
     } else {
-      if (!user.name) {
+      if (!user || !user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET })
         dispatch(getUserDetails('profile'))
         dispatch(ListMyOrders())
       } else {
