@@ -6,6 +6,7 @@ import Rating from '../Rating';
 import { listProductDetails, createProductReview } from '../../actions/productActions';
 import Loader from '../Loader'
 import Message from '../Message';
+import Meta from '../Meta';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../../constants/productConstants'
 
 const ProductScreen = () => {
@@ -66,6 +67,7 @@ const ProductScreen = () => {
       <Link className='btn btn-outline-primary my-3' to='/'> &lt;Go back</Link>
       {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />

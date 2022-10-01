@@ -20,20 +20,27 @@ h3 {
   margin: 0.1rem
 }
 
+.space {
+  padding-right: 25px;
+}
+
 /* carousel */
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
   display: flex;
+  text-decoration: none;
 }
 
 .carousel-caption {
   position: absolute;
   top: 0;
+  text-decoration: none;
 }
 
 .carousel-caption h2 {
   color: #fff;
+  text-decoration: none;
 }
 
 .carousel img {
@@ -43,10 +50,12 @@ h3 {
   border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
+  text-decoration: none;
 }
 
 .carousel a {
   margin: 0 auto;
+  text-decoration: none;
 }
 
 @media (max-width: 900px) {
