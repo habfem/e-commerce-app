@@ -16,7 +16,7 @@ const Header = () => {
   }
   return (
     <header>
-      <Navbar bg="primary" variant='dark' expand="lg" collapseOnSelect>
+      <Navbar bg="primary" variant='dark' sticky="top" expand="lg" collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>Freshout Gadgets</Navbar.Brand>
