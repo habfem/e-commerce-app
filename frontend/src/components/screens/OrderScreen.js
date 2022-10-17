@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { PayPalButton } from 'react-paypal-button-v2'
+//import axios from 'axios';
+//import { PayPalButton } from 'react-paypal-button-v2'
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { Row, Col, ListGroup, Image, Card, Button, ListGroupItem } from 'react-bootstrap';
+import { Form, Row, Col, ListGroup, Image, Card, Button, ListGroupItem } from 'react-bootstrap';
+import PaystackPop from '@paystack/inline-js'
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../Message';
 import Loader from '../Loader'
@@ -14,7 +15,11 @@ const OrderScreen = () => {
 
   const orderId = id
 
-  const [sdkReady, setSdkReady] = useState(false)
+  const [email, setEmail] = useState('')
+  const [amount, setAmount] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  //const [sdkReady, setSdkReady] = useState(false)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -51,7 +56,7 @@ const OrderScreen = () => {
       navigate('/login')
     }
 
-    const addPayPalScript = async () => {
+    /* const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal')
       console.log(clientId)
       const script = document.createElement('script')
@@ -62,26 +67,39 @@ const OrderScreen = () => {
         setSdkReady(true)
       }
       document.body.appendChild(script)
-    }
+    } */
 
     if (!order || successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
-    } else if (!order.isPaid) {
-      if (!window.paypal) {
-        addPayPalScript()
-      } else {
-        setSdkReady(true)
-      }
     }
   }, [dispatch, orderId, successPay, order, successDeliver, userInfo, navigate])
 
-  const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult)
+  /*  const successPaymentHandler = (paymentResult) => {
+     console.log(paymentResult)
+     dispatch(payOrder(orderId, paymentResult))
+   } */
+  const payWithPaystack = (e, paymentResult) => {
+    e.preventDefault()
+    const paystack = new PaystackPop()
+    paystack.newTransaction({
+      key: "pk_test_076da394b3e14accfde1f2c213ed056f37c0de4c",
+      amount: amount * 100,
+      email,
+      firstName,
+      lastName,
+      onSuccess(transaction) {
+        let message = `Paymet Complete! Reference ${transaction.reference}`
+        alert(message)
+        setEmail("")
+      },
+      onCancel() {
+        alert("You have Cancelled the transaction")
+      }
+    })
     dispatch(payOrder(orderId, paymentResult))
   }
-
   const deliverHandler = () => {
     dispatch(deliverOrder(order))
   }
@@ -174,12 +192,36 @@ const OrderScreen = () => {
                 <Col>₦{numberWithCommas(addDecimals(order.totalPrice))}</Col>
               </Row>
             </ListGroup.Item>
+            <br></br>
             {!order.isPaid && (
               <ListGroup.Item>
                 {loadingPay && <Loader />}
-                {!sdkReady ? <Loader /> : (
-                  <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />
-                )}
+                {/* <Button amount={order.totalPrice} onClick={payWithPaystack} /> */}
+                <Form.Group controlId='email'>
+                  <Form.Label>Email Address</Form.Label>
+                  <Form.Control className='py-3' type='email' placeholder='Enter email Address' value={email} onChange={(e) => setEmail(e.target.value)}></Form.Control>
+                </Form.Group>
+                <br></br>
+                <Form.Group controlId='amount'>
+                  <Form.Label>Amount</Form.Label>
+                  <Form.Control className='py-3' type='fixed' value={amount} onChange={(e) => setAmount(order.totalPrice)}></Form.Control>
+                </Form.Group>
+                <br></br>
+                <Form.Group controlId='email'>
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control className='py-3' type='name' placeholder='Enter First name' value={firstName} onChange={(e) => setFirstName(e.target.value)}></Form.Control>
+                </Form.Group>
+                <br></br>
+                <Form.Group controlId='email'>
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control className='py-3' type='name' placeholder='Enter Last name' value={lastName} onChange={(e) => setLastName(e.target.value)}></Form.Control>
+                </Form.Group>
+                <br></br>
+                <div className="d-grid gap-2">
+                  <Button type='submit' variant='primary' onClick={payWithPaystack}>
+                    Pay
+                  </Button>
+                </div>
               </ListGroup.Item>
             )}
 
@@ -201,3 +243,4 @@ const OrderScreen = () => {
 }
 
 export default OrderScreen
+
