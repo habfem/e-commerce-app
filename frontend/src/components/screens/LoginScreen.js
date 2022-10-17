@@ -48,9 +48,7 @@ const LoginScreen = () => {
           <Form.Label>Password</Form.Label>
           <Form.Control type='password' placeholder='Enter password' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
         </Form.Group>
-
         <br></br>
-
         <div className="d-grid gap-2">
           <Button type='submit' variant='primary'>
             Sign In
