@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 //import { PayPalButton } from 'react-paypal-button-v2'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Form, Row, Col, ListGroup, Image, Card, Button, ListGroupItem } from 'react-bootstrap';
@@ -56,8 +56,8 @@ const OrderScreen = () => {
       navigate('/login')
     }
 
-    /* const addPayPalScript = async () => {
-      const { data: clientId } = await axios.get('/api/config/paypal')
+    /* const addPayStack = async () => {
+      const { data: clientId } = await axios.get('/api/config/paystack')
       console.log(clientId)
       const script = document.createElement('script')
       script.type = 'text/javascript'
@@ -80,12 +80,13 @@ const OrderScreen = () => {
      console.log(paymentResult)
      dispatch(payOrder(orderId, paymentResult))
    } */
-  const payWithPaystack = (e, paymentResult) => {
+  const payWithPaystack = async (e, paymentResult) => {
+    const { data: clientId } = await axios.get('/api/config/paystack')
     e.preventDefault()
     const paystack = new PaystackPop()
     paystack.newTransaction({
-      key: "pk_test_076da394b3e14accfde1f2c213ed056f37c0de4c",
-      amount: amount * 100,
+      key: clientId,
+      amount: amount / 100,
       email,
       firstName,
       lastName,
@@ -93,12 +94,14 @@ const OrderScreen = () => {
         let message = `Paymet Complete! Reference ${transaction.reference}`
         alert(message)
         setEmail("")
+        order.isPaid = true
+        dispatch(payOrder(orderId, paymentResult))
       },
       onCancel() {
         alert("You have Cancelled the transaction")
       }
     })
-    dispatch(payOrder(orderId, paymentResult))
+
   }
   const deliverHandler = () => {
     dispatch(deliverOrder(order))
@@ -243,4 +246,3 @@ const OrderScreen = () => {
 }
 
 export default OrderScreen
-

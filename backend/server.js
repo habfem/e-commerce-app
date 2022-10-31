@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
-
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
@@ -33,12 +32,14 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 
 //paypal
-app.get('/api/config/paypal', (req, res) =>
-  res.send(process.env.PAYPAL_CLIENT_ID)
+app.get('/api/config/paystack', (req, res) =>
+  res.send(process.env.PAYSTACK_KEY)
 )
 
 //paystack
-
+/* app.get('api/config/paystack', (req, res) =>
+  res.send(process.env.PAYSTACK_KEY)
+) */
 // Make upload folder static
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
