@@ -129,6 +129,7 @@ export const payOrder = (orderId, paymentResult) => async (
       type: ORDER_PAY_FAIL,
       payload: message,
     })
+    throw error
   }
 }
 

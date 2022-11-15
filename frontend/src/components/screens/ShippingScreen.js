@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../FormContainer';
 import CheckoutSteps from '../CheckoutSteps'
 import { saveShippingAddress } from '../../actions/cartActions'
+import Meta from '../Meta';
 
 const ShippingScreen = () => {
 
@@ -29,6 +30,7 @@ const ShippingScreen = () => {
   return (
     <FormContainer>
       <CheckoutSteps step1 step2 />
+      <Meta title='Shipping Address' />
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='address'>

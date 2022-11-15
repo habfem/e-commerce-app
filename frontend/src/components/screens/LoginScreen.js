@@ -4,6 +4,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../Message';
 import Loader from '../Loader';
+import Meta from '../Meta'
 import { login } from '../../actions/userActions';
 import FormContainer from '../FormContainer';
 
@@ -35,6 +36,7 @@ const LoginScreen = () => {
 
   return (
     <FormContainer>
+      <Meta title='Login - Freshout Gadget' />
       <h1>Sign in</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}

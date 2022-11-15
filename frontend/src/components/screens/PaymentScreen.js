@@ -19,7 +19,7 @@ const PaymentScreen = () => {
     Navigate('/shipping')
   }
 
-  const [paymentMethod, setPaymentMethod] = useState('Paystack or Card Payment')
+  const [paymentMethod, setPaymentMethod] = useState('Paypal or Card Payment')
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -37,9 +37,9 @@ const PaymentScreen = () => {
           <br></br>
           <br></br>
           <Col>
-            <Form.Check type='radio' label='Paystack or Card Payment (Recommended)' id='Paystack' name='paymentMethod' value='Paystack' checked onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
+            <Form.Check type='radio' label='Paypal or Card Payment (Recommended)' id='Paystack' name='paymentMethod' value='Paypal' checked onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
             <br></br>
-            <Form.Check type='radio' label='PayPal' id='Paypal' name='paymentMethod' disabled value='Paypal' onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
+            <Form.Check type='radio' label='Paystack' id='paystack' name='paymentMethod' disabled value='Paysack' onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
             <br></br>
             <Form.Check type='radio' label='E-naira' id='E-naira' name='paymentMethod' disabled value='E-naira (Coming Soon)' onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
             <br></br>
