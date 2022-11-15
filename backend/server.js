@@ -32,8 +32,8 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 
 //paypal
-app.get('/api/config/paystack', (req, res) =>
-  res.send(process.env.PAYSTACK_KEY)
+app.get('/api/config/paypal', (req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
 )
 
 //paystack

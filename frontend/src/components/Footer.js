@@ -2,10 +2,15 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
 const Footer = () => {
+
+
   return (
+
     <footer>
       <hr></hr>
+
       <Container>
+
         <Row>
           <h4 className='text-center py-3'>CONTACT FOR SUPPORT</h4>
           <Col>
@@ -22,6 +27,7 @@ const Footer = () => {
           </Col>
         </Row>
         <hr></hr>
+
         <Row>
           <Col className='text-center py-3'>
             Copyright &copy; Freshout Gadgets
@@ -30,6 +36,7 @@ const Footer = () => {
       </Container>
 
     </footer>
+
   )
 }
 
