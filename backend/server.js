@@ -21,9 +21,6 @@ if (process.env.NODE_ENV === 'development') { // for dev mode only
 
 app.use(express.json()) /// allows us to accept JSON data
 
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
 
 // Routes
 app.use('/api/products', productRoutes);
@@ -37,12 +34,25 @@ app.get('/api/config/paypal', (req, res) =>
 )
 
 //paystack
-/* app.get('api/config/paystack', (req, res) =>
+/* app.get('/api/config/paystack', (req, res) =>
   res.send(process.env.PAYSTACK_KEY)
 ) */
+
 // Make upload folder static
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')))
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running...');
+  });
+}
+
 
 // Error Handling
 app.use(notFound)

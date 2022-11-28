@@ -1,5 +1,6 @@
 # E-commerce App with MERN Stack
 Hosted: [FS Gadaget](https://fsgadget.herokuapp.com/)
+
 ## React Frontend
 
 ```npx create-react-app@latest frontend --use-npm```
