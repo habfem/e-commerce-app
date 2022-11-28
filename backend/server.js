@@ -34,7 +34,7 @@ app.get('/api/config/paypal', (req, res) =>
 )
 
 //paystack
-/* app.get('api/config/paystack', (req, res) =>
+/* app.get('/api/config/paystack', (req, res) =>
   res.send(process.env.PAYSTACK_KEY)
 ) */
 
