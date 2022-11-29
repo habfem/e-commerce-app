@@ -1,5 +1,5 @@
 # E-commerce App with MERN Stack
-Hosted: [FS Gadaget](https://fsgadget.herokuapp.com/)
+Hosted: [FS Gadaget](https://fsgadgets.onrender.com/)
 
 ## React Frontend
 
