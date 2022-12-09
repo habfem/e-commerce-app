@@ -15,6 +15,7 @@ const UserEditScreen = () => {
   const userId = id;
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
 
 
@@ -42,13 +43,14 @@ const UserEditScreen = () => {
         setName(user.name)
         setEmail(user.email)
         setIsAdmin(user.isAdmin)
+        setPassword(user.password)
       }
     }
   }, [dispatch, navigate, userId, user, successUpdate])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(updateUser({ _id: userId, name, email, isAdmin }))
+    dispatch(updateUser({ _id: userId, name, email, isAdmin, password }))
   }
 
   return (
@@ -71,6 +73,13 @@ const UserEditScreen = () => {
             <Form.Group controlId='email'>
               <Form.Label>Email Address</Form.Label>
               <Form.Control className='py-3' type='email' placeholder='Enter email Address' value={email} onChange={(e) => setEmail(e.target.value)}></Form.Control>
+            </Form.Group>
+
+            <br></br>
+
+            <Form.Group controlId='password'>
+              <Form.Label>Password</Form.Label>
+              <Form.Control className='py-3' type='password' placeholder='Change Password' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
             </Form.Group>
 
             <br></br>
